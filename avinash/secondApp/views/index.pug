@@ -1,0 +1,98 @@
+extends layout
+
+block content
+  nav.navbar.navbar-inverse.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+          span.sr-only Toggle navigation
+          
+        a.navbar-brand(href='#') Express JS
+  br 
+  br 
+  br 
+  <div class="container">
+  <h2> #{title} </h2>  
+  p   
+  
+  if errors
+    for error in errors
+      li #{error.msg} 
+
+  <form class="form-horizontal" action="/add" method="POST">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="fname">First Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="first_name" placeholder="Enter First Name" name="first_name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for = "lname">Last Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name" name="last_name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Re-enter Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="pwd2" placeholder="Re-enter password" name="pwd2">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="gen">Gender</label>
+      <div class="col-sm-ofset-2">
+        <label class="radio-inline"><input type="radio" name="gender" value="male" checked>Male </label>
+        <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-6 col-md-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  <h2> Registered Users </h2>
+    for user in users
+      br
+      li First-name....#{user.first_name}
+          br 
+          |Last-name....#{user.last_name}
+          br
+          |Email....#{user.email}
+          br
+          |Gender....#{user.gender}
+          br
+          |user_id....#{user._id}
+          br          
+          <form action="/del" method="POST" >
+            <button type="submit" class="btn btn-default" name="names">Delete</button>
+            //need to implement the delete function
+    else
+      li sorry, no users! 
+  
+  
+  
+    
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script.
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\\/script>')
+    script(src='public/javascripts/bootstrap.min.js')
+
+ 
