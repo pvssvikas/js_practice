@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    style.
+      ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      }
+      li {
+      float: left;
+      }
+      li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      }
+      li a:hover:not(.active) {
+      background-color: #111;
+      }
+      .active {
+      background-color: #4CAF50;
+      }
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    ul
+      li
+        a.active(href='/go_add') Add User
+      li
+        a(href='/go_list') List Users
+      li
+        a(href='/go_del') Delete User
+      li
+        a(href='/go_update') Update User
+  body
+  
+    
+    block content

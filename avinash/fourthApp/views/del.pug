@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1= title
+    h4 enter the first-name to remove a user from registered users
+    form(action='/del_user' method='POST')
+        P First Name:
+        input(type='text',name='first_name')
+        P Last name:
+        input(type='text',name='last_name')
+        br
+        br
+        input(type='submit' value='Delete')
+        
