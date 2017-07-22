@@ -11,3 +11,8 @@ block content
               |Last  Name----#{user.last_name}
               br
               |h5 user-id-------#{user._id} 
+
+    if errors
+        for error in errors
+            li #{error.msg} 
+            br

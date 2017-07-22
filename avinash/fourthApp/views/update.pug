@@ -7,6 +7,8 @@ block content
     form(action='/user_update' method='POST')
         label First Name:
         input(type='text',name='first_name')
+        label Last name:
+        input(type='text',name='last_name')
         br
         br
         label Updated First Name:
@@ -16,3 +18,6 @@ block content
         br
         br
         input(type='submit' value='update')
+    br
+    br
+    p #{errors}

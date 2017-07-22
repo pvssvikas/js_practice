@@ -5,7 +5,6 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/userdb";
 var results = ''
 var expressValidator=require('express-validator');
-var dialog = require('dialog');
 
 
 /* GET home page. */
@@ -43,30 +42,42 @@ router.get('/go_update',function(req,res){
 
 // method to add the user
 router.post('/adduser',function(req,res){
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var newUser = {
-        title:'Express',
-        first_name : req.body.first_name,
-        last_name : req.body.last_name,
-        }
-      // insert method
-    db.collection("Users").insertOne(newUser, function(err, res) {
+  req.checkBody("first_name","First name required").notEmpty();
+  req.checkBody('last_name','Last name required').notEmpty();
+
+  var errors = req.validationErrors();
+
+  if(errors){
+    res.render('index',
+                { title: 'Express',
+                  errors:errors });
+  }
+  else{  
+    MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      console.log("1 record inserted");
+      var newUser = {
+          title:'Express',
+          first_name : req.body.first_name,
+          last_name : req.body.last_name,
+          }
+        // insert method
+      db.collection("Users").insertOne(newUser, function(err, res) {
+        if (err) throw err;
+        console.log("1 record inserted");
+        });
+      db.collection('Users', function (err, collection) {
+          collection.find().toArray(function(err, items) {
+              if(err) throw err; 
+              res.render('user',{
+                  user:'user',
+                  results:items,
+                  title: 'Express'
+          }); 
+        });             
       });
-    db.collection('Users', function (err, collection) {
-         collection.find().toArray(function(err, items) {
-            if(err) throw err; 
-            res.render('user',{
-                user:'user',
-                results:items,
-                title: 'Express'
-        }); 
-      });             
     });
-    });
-  });
+  }
+});
 
 router.post('/del_user',function(req,res){
 MongoClient.connect(url, function(err, db) {
@@ -95,7 +106,7 @@ router.post('/user_update',function(req,res){
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
     db.collection('Users', function (err, collection) {        
-      collection.update({first_name: req.body.first_name}, 
+      collection.update({first_name: req.body.first_name,last_name:req.body.last_name}, 
                         { $set: { first_name: req.body.up_first_name, last_name: req.body.up_last_name} },function(err, result){
                               if(err) throw err;    
                               console.log('Document Updated Successfully');
