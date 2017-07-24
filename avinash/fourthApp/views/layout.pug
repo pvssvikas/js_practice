@@ -27,16 +27,32 @@ html
       }
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='icon', href='favicon.ico' type='image/x-icon')
     ul
-      li
-        a.active(href='/go_add') Add User
-      li
-        a(href='/go_list') List Users
-      li
-        a(href='/go_del') Delete User
-      li
-        a(href='/go_update') Update User
+      li#go_add
+        if request.path === '/go_add'
+          console.log(request.baseUrl)
+          a.active(href='/go_add') Add User
+        else
+          a(href='/go_add') Add User
+      li#go_list
+        if request.path === '/go_list'
+          a.active(href='/go_list') List Users
+        else
+          a(href='/go_list') List Users
+      li#go_del
+        if request.path === '/go_del'
+          a.active(href='/go_del') Delete User
+        else
+          a(href='/go_del') Delete User
+      li#go_update
+        if request.path === '/go_update'
+          a.active(href='/go_update') Update User
+        else
+          a(href='/go_update') Update User
   body
   
-    
+    #tab-content
     block content
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='/js/utils.js')

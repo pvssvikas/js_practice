@@ -9,15 +9,15 @@ var expressValidator=require('express-validator');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', request: req });
 });
 
 router.get('/go_del',function(req,res){
-  res.render('del',{ title: 'Express' });
+  res.render('del',{ title: 'Express', request: req  });
 });
 
 router.get('/go_add',function(req,res){
-  res.render('index',{ title: 'Express' });
+  res.render('index',{ title: 'Express', request: req  });
 })
 
 router.get('/go_list',function(req,res){
@@ -29,7 +29,8 @@ router.get('/go_list',function(req,res){
             res.render('user',{
                 user:'user',
                 results:items,
-                title: 'Express'
+                title: 'Express',
+                request: req 
         }); 
       });             
     });
@@ -37,7 +38,7 @@ router.get('/go_list',function(req,res){
 });
 
 router.get('/go_update',function(req,res){
-  res.render('update',{ title: 'Express' });
+  res.render('update',{ title: 'Express', request: req  });
 });
 
 // method to add the user
@@ -75,6 +76,17 @@ router.post('/adduser',function(req,res){
           }); 
         });             
       });
+    db.collection('Users', function (err, collection) {
+         collection.find().toArray(function(err, items) {
+            if(err) throw err; 
+            res.render('user',{
+                user:'user',
+                results:items,
+                title: 'Express',
+                request: req 
+        }); 
+      });             
+    });
     });
   }
 });
@@ -95,7 +107,8 @@ MongoClient.connect(url, function(err, db) {
             res.render('user',{
                 user:'user',
                 results:items,
-                title: 'Express'
+                title: 'Express',
+                request: req 
         }); 
       });             
     });
@@ -124,7 +137,8 @@ MongoClient.connect(url, function(err, db) {
           res.render('user',{
               user:'user',
               results:items,
-              title: 'Express'
+              title: 'Express', 
+              request: req 
         }); 
       });             
     });
