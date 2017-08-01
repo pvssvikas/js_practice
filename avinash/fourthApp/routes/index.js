@@ -43,18 +43,7 @@ router.get('/go_update',function(req,res){
 
 // method to add the user
 router.post('/adduser',function(req,res){
-  req.checkBody("first_name","First name required").notEmpty();
-  req.checkBody('last_name','Last name required').notEmpty();
-
-  var errors = req.validationErrors();
-
-  if(errors){
-    res.render('index',
-                { title: 'Express',
-                  errors:errors });
-  }
-  else{  
-    MongoClient.connect(url, function(err, db) {
+     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var newUser = {
           title:'Express',
@@ -66,16 +55,6 @@ router.post('/adduser',function(req,res){
         if (err) throw err;
         console.log("1 record inserted");
         });
-      db.collection('Users', function (err, collection) {
-          collection.find().toArray(function(err, items) {
-              if(err) throw err; 
-              res.render('user',{
-                  user:'user',
-                  results:items,
-                  title: 'Express'
-          }); 
-        });             
-      });
     db.collection('Users', function (err, collection) {
          collection.find().toArray(function(err, items) {
             if(err) throw err; 
@@ -88,9 +67,9 @@ router.post('/adduser',function(req,res){
       });             
     });
     });
-  }
 });
 
+//method to delete a user from registered users
 router.post('/del_user',function(req,res){
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -115,6 +94,7 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
+  //method to update a user from registered user
 router.post('/user_update',function(req,res){
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;

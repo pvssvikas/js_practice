@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 extends layout
 
 block content
@@ -19,4 +20,27 @@ block content
         br
         input(type='submit' value='update')
     br
+=======
+extends layout
+
+block content
+    h1= title
+    br
+    br
+    form(action='/user_update' method='POST')
+        label First Name:
+        input(type='text',name='first_name' required)
+        label Last name:
+        input(type='text',name='last_name' required)
+        br
+        br
+        label Updated First Name:
+        input(type='text',name='up_first_name' required)
+        label Updated Last name:
+        input(type='text',name='up_last_name'required)
+        br
+        br
+        input(type='submit' value='update')
+    br
+>>>>>>> 7a3a9727df49bac20e56f3ef8d64e94e80f09fc5
     br

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 extends layout
 
 block content
@@ -10,4 +11,18 @@ block content
               br
               |Last  Name----#{user.last_name}
               br
+=======
+extends layout
+
+block content
+    h1= title
+
+    h1  #{user}
+    if results.length
+        each user in results 
+            h5|First Name----#{user.first_name}
+              br
+              |Last  Name----#{user.last_name}
+              br
+>>>>>>> 7a3a9727df49bac20e56f3ef8d64e94e80f09fc5
               |h5 user-id-------#{user._id} 
