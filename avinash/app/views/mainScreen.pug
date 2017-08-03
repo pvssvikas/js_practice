@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    .container-fluid
+        .row
+            .page-header.header_site
+                .clearfix
+                    .pull-left
+                        a(href='/')
+                            img(src='/images/product-home.png' style='height:30px') 
+                    .pull-left
+                        h1 Home
+                    .pull-right
+                        p #{user_name} 
+                            a(href='/') Signout 
+                        p#se  Search
+                            input(type='text')
+                            input(type='submit' value='search')
+                            a(href="/defineHome" class='ic')
+                                span(class="glyphicon glyphicon-cog")
+    .container
+        .row
+            .col-md-12.col-sm-12
+                .panel.panel-primary
+                    .panel-headng
+                        ul.nav.nav-tabs
+                            li.nav-item
+                                a(class='nav-link ' href='/defineHome') Home
+                            li.nav-item
+                                a(class='nav-link' href='#') Profiles
+                            li.nav-item
+                                a(class='nav-link' href='#') Users
+                    .panel-body
+                        .container
+                            .row
