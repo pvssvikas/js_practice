@@ -1,3 +1,4 @@
 $(function() {
-  $('#container1').jstree();
+  $('#treeview').jstree();
+  $("#treeview").jstree("open_all");
 });
