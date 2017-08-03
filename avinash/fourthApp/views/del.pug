@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 extends layout
 
 block content
@@ -11,18 +11,4 @@ block content
         input(type='text',name='last_name' required)
         br
         br
-=======
-extends layout
-
-block content
-    h1= title
-    h4 enter the first-name and Last-name to remove a user from registered users
-    form(action='/del_user' method='POST')
-        P First Name:
-        input(type='text',name='first_name' required)
-        P Last name:
-        input(type='text',name='last_name' required)
-        br
-        br
->>>>>>> 7a3a9727df49bac20e56f3ef8d64e94e80f09fc5
         input(type='submit' value='Delete')
