@@ -40,6 +40,15 @@ router.get('/defineHome',function(req,res){
 });
 
 router.post('/signin',function(req,res){
+  var query = { email : req.body.email}
+  MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  db.collection("users").find(query).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result.email);
+    db.close();
+  });
+});
   res.render('mainScreen');
 });
 
