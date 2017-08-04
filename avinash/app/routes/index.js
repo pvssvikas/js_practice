@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Mongo = require('mongodb')
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/projectdb";
+var url = "mongodb://localhost:27017/userdb";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -46,7 +46,5 @@ router.post('/signin',function(req,res){
 router.get('/defineSB',function(req,res){
   res.render('defineSB');
 });
-
-
 
 module.exports = router;
