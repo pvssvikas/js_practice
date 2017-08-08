@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${file}"
+        },   
+        {
+            "name": "Run mocha",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/fourthApp/node_modules/mocha/bin/_mocha",
+            "stopOnEntry": false,
+            "args": ["${workspaceRoot}/fourthApp/test/*.js", "--no-timeouts"],
+            "cwd": "${workspaceRoot}/fourthApp/",
+            "runtimeExecutable": null,
+            "env": { "NODE_ENV": "testing"}
+    }
+    ]
+}

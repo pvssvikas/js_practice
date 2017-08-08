@@ -6,10 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator=require('express-validator');
 
+var db = require('./models/init');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+db();
 
 app.use(expressValidator());
 
