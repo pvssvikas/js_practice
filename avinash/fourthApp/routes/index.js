@@ -24,9 +24,7 @@ router.get('/go_update',function(req,res){
 
 
 router.get('/go_list',function(req,res){
-  //TODO: -- need to call DB related call
     userDB.listUsers(function(users){
-          console.log(users);
           res.render('user', {"results":users});
     });
 });
@@ -38,9 +36,7 @@ var newUser = {
           "first_name" : req.body.first_name,
           "last_name" : req.body.last_name,
           };
-    console.log('about to save new user');    
-  userDB.saveUser(newUser, function(userFromDB) {
-    console.log('got back from DB');
+    userDB.saveUser(newUser, function(userFromDB) {
         res.render('user',{
                 "user":'user',
                 "results":userFromDB,

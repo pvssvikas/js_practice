@@ -16,13 +16,11 @@ userSchema.statics.findByLasttName = function(name, cb) {
   return this.find({ last_name: name }, cb);
 };
 
-var TestUsers = mongoose.model('TestUsers', userSchema);
+var TestUsers = mongoose.model('TestUsers', userSchema, 'TestUsers');
 
 var saveUser = function(user, cb) {
   TestUsers.findByFirstName(user.first_name, function(err, userFromDB){
-
       if (userFromDB.length == 0) {
-        console.log("trying to save new object");
           var newUser = new TestUsers({
             first_name : user.first_name,
             last_name : user.last_name,
