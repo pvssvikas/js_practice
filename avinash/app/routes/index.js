@@ -3,6 +3,7 @@ var router = express.Router();
 var Mongo = require('mongodb')
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/userdb";
+var userDB = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,25 +15,20 @@ router.get('/register',function(req,res){
 });
 
 router.post('/mainScreen',function(req,res){
-  MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
-      var newUser = {
-          first_name : req.body.first_name,
-          last_name : req.body.last_name,
-          email : req.body.email,
-          password : req.body.password
-          }
-        // insert method
-      db.collection("users").insertOne(newUser, function(err, res) {
-        if (err) throw err;
-        console.log("1 record inserted");
-        console.log(req.body.first_name);
-        });
+  var newUser = {
+          "first_name" : req.body.first_name,
+          "last_name" : req.body.last_name,
+          "email" : req.body.email,
+          "password" : req.body.password
+          };
+    res.render('defineHome');
+    userDB.saveUser(newUser, function(userFromDB) {
         res.render('mainScreen',{
-                user_name: req.body.first_name 
-        }); 
-      });             
+          "request" : req,
+          "user_name": newUser.first_name
+        });
     });
+});
 
 router.get('/defineHome',function(req,res){
   //res.render('index', { title: 'Express' });
