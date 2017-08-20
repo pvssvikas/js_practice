@@ -21,7 +21,6 @@ router.post('/mainScreen',function(req,res){
           "email" : req.body.email,
           "password" : req.body.password
           };
-    res.render('defineHome');
     userDB.saveUser(newUser, function(userFromDB) {
         res.render('mainScreen',{
           "request" : req,
