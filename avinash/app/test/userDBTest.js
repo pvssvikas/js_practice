@@ -4,7 +4,7 @@ var userDB = require('../models/user.js');
 
 
 describe('User', function() {
-  describe('#save()', function() {
+  describe('#allowed operations', function() {
     it('should save without error', function(done) {
         var userObj = {
             title : 'Mr.',
@@ -28,13 +28,8 @@ describe('User', function() {
                 });
             });
         });
-    })
-  })
-});
+    });
 
-
-describe('User', function() {
-  describe('#update()', function() {
     it('should update without error', function(done) {
         var userObj = {
             title : 'Ms.',
@@ -48,12 +43,7 @@ describe('User', function() {
                 expect(userFromDB).to.have.lengthOf(1);
                 done();
         });
-    })
-  })
-});
-
-describe('User', function() {
-  describe('#delete()', function() {
+    });
     it('should delete without error', function(done) {
             var userObj = {
                 title : 'Ms.',
@@ -68,19 +58,31 @@ describe('User', function() {
                     done();
                 });
             });
-    })
-  })
-});
-
-describe('User', function() {
-  describe('#list()', function() {
+    });
     it('should list without error', function(done) {
         userDB.listUsers(function (users) {
             expect(users.length).to.not.equal(0);
             done();
         });
-    })
-  })
+    });
+  }); // end of user test case description
+});
+
+
+describe('User', function() {
+  describe('#update()', function() {
+
+  });
+});
+
+describe('User', function() {
+  describe('#delete()', function() {
+  });
+});
+
+describe('User', function() {
+  describe('#list()', function() {
+  });
 });
 
 
