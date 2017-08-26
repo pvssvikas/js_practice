@@ -3,15 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
     "bootstrap-toggle": "^2.2.2",
+    "chai": "*",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-session": "^1.15.5",
     "jstree": "^3.3.4",
+    "mocha": "*",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.6",
     "morgan": "~1.8.1",

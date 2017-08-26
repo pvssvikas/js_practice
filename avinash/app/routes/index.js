@@ -1,17 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var Mongo = require('mongodb')
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/userdb";
+var session = require('express-session')
+
+require('../models/init')();
+
 var userDB = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  if (req.session.loggedInUser) {
+    res.redirect("/mainScreen");
+  } else {
+    res.render('index');
+  }
 });
 
 router.get('/register',function(req,res){
     res.render('userReg');
+});
+
+router.get('/mainScreen', function(req, res){
+  if (req.session.loggedInUser) {
+      res.render('mainScreen',{
+          "request" : req,
+          "user_name": req.session.loggedInUser.first_name
+      });
+
+  } else {
+    res.redirect("/");
+  }
 });
 
 router.post('/mainScreen',function(req,res){
@@ -21,10 +38,15 @@ router.post('/mainScreen',function(req,res){
           "email" : req.body.email,
           "password" : req.body.password
           };
+    console.log(newUser.first_name + " " + newUser.last_name);
+
     userDB.saveUser(newUser, function(userFromDB) {
+        
+        req.session.loggedInUser = userFromDB[0];
+
         res.render('mainScreen',{
           "request" : req,
-          "user_name": newUser.first_name
+          "user_name": userFromDB[0].first_name
         });
     });
 });

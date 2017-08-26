@@ -21,6 +21,17 @@
             "cwd": "${workspaceRoot}/fourthApp/",
             "runtimeExecutable": null,
             "env": { "NODE_ENV": "testing"}
-    }
+        },
+        {
+            "name": "Run mocha for app",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/app/node_modules/mocha/bin/_mocha",
+            "stopOnEntry": false,
+            "args": ["${workspaceRoot}/app/test/*.js", "--no-timeouts"],
+            "cwd": "${workspaceRoot}/app/",
+            "runtimeExecutable": null,
+            "env": { "NODE_ENV": "testing"}
+        }
     ]
 }

@@ -14,9 +14,11 @@ describe('User', function() {
         userDB.saveUser(userObj, function(userFromDB) {
             expect(userFromDB).to.not.equal(null);
             // trying to save multiple copies of the same user
+            userObj.first_name = 'testUser1';
             userDB.saveUser(userObj, function(userFromDB) {
                 expect(userFromDB).to.not.equal(null);
-
+                
+                userObj.first_name = 'testUser2';
                 userDB.saveUser(userObj, function(userFromDB) {
                     expect(userFromDB).to.not.equal(null);
                     
@@ -29,6 +31,7 @@ describe('User', function() {
     })
   })
 });
+
 
 describe('User', function() {
   describe('#update()', function() {
