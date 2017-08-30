@@ -11,18 +11,22 @@ userSchema.statics.findByFirstName = function(name, cb) {
   return this.find({ first_name: name }, cb);
 };
 
+userSchema.statics.findByLastName = function(name, cb) {
+  return this.find({ last_name: name }, cb);
+};
+
 userSchema.statics.findByEmail = function(mailID, cb) {
   return this.find({ email: mailID }, cb);
 };
 
-userSchema.statics.findByLasttName = function(name, cb) {
-  return this.find({ last_name: name }, cb);
+userSchema.statics.findByFirstName = function(name, cb) {
+  return this.find({ first_name: name }, cb);
 };
 
 var regUsers = mongoose.model('regUsers', userSchema, 'regUsers');
 
 var saveUser = function(user, cb) {
-  regUsers.findByFirstName(user.first_name, function(err, userFromDB){
+  regUsers.findByEmail(user.email, function(err, userFromDB){
       if (userFromDB.length == 0) {
           var newUser = new regUsers({
             first_name : user.first_name,
@@ -44,22 +48,23 @@ var saveUser = function(user, cb) {
       }
 
   });
-
-
 };
 
-var updateUser = function(searchUser, user, cb) {
-  regUsers.findByFirstName(searchUser, function(err, userFromDB){
+var checkUser = function(user_name, pwd, cb) {
+  regUsers.findByEmail(user_name, function(err, userFromDB){
     if (userFromDB.length == 0) {
       // did not find a user to update.
       cb([user]);
     } else {
-      userFromDB[0].first_name = user.first_name;
-      userFromDB[0].last_name = user.last_name;
-      userFromDB[0].title = user.title;
+      if(userFromDB[0].password == pwd){
+        cb(userFromDB);
+      }
+    //  userFromDB[0].first_name = user.first_name;
+    //  userFromDB[0].last_name = user.last_name;
+    //  userFromDB[0].title = user.title;
 
-      userFromDB[0].save();
-      cb(userFromDB);
+    //  userFromDB[0].save();
+    //  cb(userFromDB);
     }
   });
 }
@@ -85,7 +90,7 @@ var listUsers = function(cb) {
 module.exports = {
     "listUsers" : listUsers,
     "saveUser" : saveUser,
-    "updateUser": updateUser,
+    "checkUser": checkUser,
     "deleteUser": deleteUser
 };
 

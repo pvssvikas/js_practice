@@ -6,7 +6,7 @@ describe('SwitchBoard', function() {
     describe('#allowed operations', function() {
         it('should save without error', function(done) {
             var sbObj = {
-                name : 'sb3',
+                name : 'sb1',
                 appliances : [ "fan", "light" ]
             }
             sbDB.saveSwitchBoard(sbObj, function(sbFromDB){
@@ -17,7 +17,7 @@ describe('SwitchBoard', function() {
 
         it("should get the saved sb's", function(done){
             sbDB.getAllSwitchBoards(function(err, sbs){
-                expect(sbs).to.have.lengthOf(3);
+                expect(sbs).to.have.lengthOf(2);
                 done();
             });
         });

@@ -13,40 +13,21 @@ block content
                         h1 Home
     .container
         .row    
-            .col-md-6.col-sm-6
+            .col-md-5.col-sm-5
                 .panel.panel-primary.first
                     .panel-header
                     .panel-body
-                        #treeview
-                            ul
-                                li Switch Board Definitions
-                                    ul
-                                        li Home Appliances
-                                            ul 
-                                                li General Appliances
-                                                    ul
-                                                        li Fan
-                                                        li Light
-                                                        li AC
-                                                        li Cooler
-                                                li Kitchen
-                                                    ul
-                                                        li Fridge
-                                                        li Grinder
-                                                        li Exhaust
-                                                li Entertainment
-                                                    ul
-                                                        li TV   
-                                                        li Music System
-                                        li Power Sockets
-            .col-md-6.col-sm-6
+                        .tree
+                            #sbtree
+                            
+            .col-md-7.col-sm-7
                 .panel.panel-primary.first
                     .panel-header
+                        .pull-right
+                            input(type='text' placeholder='switch board name' class='add' id='sbName')
+                            p#warning 
                     .panel-body
-                        .col-md-4.col-md-offset-8.col-sm-4.col-sm-offset-6.col-xs-4.col-xs-offset-6
-                            input(type='text' placeholder='switch board name')
-                        .div(class="drop" style="min-height:200px; min-width:200px; background:#6f6948; border-radius:10px;")
-
-                        
+                        .sb_box#sb_box       
+                                p#empty no appliances selected        
                 .col-xs-4.col-xs-offset-6.col-sm-4.col-sm-6.col-md-4.col-md-6
-                    a(href='/defineHome' class='btn btn-primary') Done
+                    a( class='btn btn-primary' id = "sbDone"  ) Done

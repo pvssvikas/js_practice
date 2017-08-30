@@ -1,6 +1,5 @@
 extends layout
 
-
 block content
     .container-fluid
         .row
@@ -13,33 +12,19 @@ block content
                         h1 Home
     .container
         .row    
-            .col-md-4.col-sm-4
+            .col-md-5.col-sm-5
                 .panel.panel-primary.first
                     .panel-header
                     .panel-body
-                        #treeview
-                            ul
-                                li Home
-                                li Floors
-                                    ul
-                                        li Groound Floor
-                                            ul 
-                                                li Corridors
-                                                    ul
-                                                        li North
-                                                        li East
-                                                        li West
-                                                        li South
-                                                li Rooms
-                                                    ul
-                                                        li Room 1
-                                                        li Rooom 2
-                                                        li Room 3
-
-            .col-md-8.col-sm-8.col-xs-8
+                        #hometree
+            .col-md-7.col-sm-7.col-xs-7
                 .panel.panel-primary.first
                     .panel-header
+                        .pull-right
+                          a(href='/defineSB' class='add btn btn-primary') add Switch Board
                     .panel-body
-                        .col-md-4.col-md-offset-8.col-sm-4.col-sm-offset-8.col-xs-4.col-xs-offset-8
-                            a(href='/defineSB' class='btn btn-primary') add Switch Board
-
+                        .home_box#home_box
+                            .home_demo
+                                p no switchboards defined
+                            
+                       

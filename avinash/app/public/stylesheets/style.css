@@ -48,3 +48,34 @@ first{
   max-height: 200px;
   max-width: 100px;
 }
+
+.add{
+  margin : 10px;
+}
+
+.no_checkbox > i.jstree-checkbox {
+  display:none;
+}
+
+.home_box{
+  margin-top: 50px;
+  margin-left: 7px;
+}
+
+.home_text{
+  max-width: 100px;
+  padding: 5px;
+  border: 5px solid gray;
+  margin: 5px;
+  background: lightskyblue;
+  -webkit-text-fill-color: indigo;
+}
+
+.sb_box{
+  margin-top: 50px;
+  margin-left: 7px;
+}
+
+#warning{
+  color: red;
+}
