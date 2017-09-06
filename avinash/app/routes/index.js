@@ -7,8 +7,6 @@ require('../models/init')();
 var userDB = require('../models/user');
 
 
-var userSession = require('../models/session');
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (req.session.loggedInUser) {
