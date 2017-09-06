@@ -1,10 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var session = require('express-session')
+var session = require('express-session');
 
 require('../models/init')();
 
 var userDB = require('../models/user');
+
+
+var userSession = require('../models/session');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -40,6 +43,7 @@ router.post('/mainScreen',function(req,res){
           "email" : req.body.email,
           "password" : req.body.password
           };
+          
    // console.log(newUser.first_name + " " + newUser.last_name);
 
     userDB.saveUser(newUser, function(userFromDB) {
@@ -67,7 +71,12 @@ router.post('/mainScreen',function(req,res){
 });
 
 router.get('/defineHome',function(req,res){
+  console.log("reached")
    res.render('defineHome');
+});
+
+router.post('/defineHome',function(req,res){
+ // console.log(req.body.);
 });
 
 router.get('/defineSB',function(req,res){

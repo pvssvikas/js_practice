@@ -51,7 +51,7 @@ $(function() {
         'plugins': ["checkbox"]
     }).on("check_node.jstree ", function(e, data) {
      // alert(data.node.id);
-      var txt2 = $('<i class="col-md-4 col-sm-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+      var txt2 = $('<i class="col-md-4 col-sm-4 home_text" name= '+ data.node.id +'"></i>').text(data.node.text);
       $(".home_box").append(txt2); 
      }).on("uncheck_node.jstree", function(e, data){
         var txt = data.node.id;
