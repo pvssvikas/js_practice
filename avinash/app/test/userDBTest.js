@@ -31,11 +31,8 @@ describe('User', function() {
     });
 
     it('should login without error', function(done) {
-
         userDB.checkUser('jitendraavinash96@gmail.com', '123', function(userFromDB) {
             expect(userFromDB).to.not.equal(null);
-            // trying to save multiple copies of the same user
-            // expecting to find only one entry in DB
                 expect(userFromDB).to.have.lengthOf(1);
                 done();
         });

@@ -50,22 +50,30 @@ var saveUser = function(user, cb) {
   });
 };
 
-var checkUser = function(user_name, pwd, cb) {
-  regUsers.findByEmail(user_name, function(err, userFromDB){
-    if (userFromDB.length == 0) {
-      // did not find a user to update.
-      cb([user]);
-    } else {
-      if(userFromDB[0].password == pwd){
-        cb(userFromDB);
-      }
-    //  userFromDB[0].first_name = user.first_name;
-    //  userFromDB[0].last_name = user.last_name;
-    //  userFromDB[0].title = user.title;
+var checkUser = function(user_email, pwd, cb) {
+  regUsers.findByEmail(user_email, function(err, userFromDB){
 
-    //  userFromDB[0].save();
-    //  cb(userFromDB);
-    }
+    var dummyUser = {
+      first_name : "dummy",
+      last_name : "dummy",
+      email : "not registered",
+      password : "dummy"
+    };
+
+    if ( 0 == userFromDB.length ) {
+      cb([dummyUser]);
+      return;
+    } else if( userFromDB[0].password != pwd) {
+      // given password did not match
+      dummyUser.password = "wrong passwd";
+      console.log('loginFailed: given passwd is '+ pwd  + " expected passwd is " + userFromDB[0].password)
+
+      cb([dummyUser]);
+      return;
+    } 
+
+    cb(userFromDB);
+    return;
   });
 }
 

@@ -57,11 +57,18 @@ router.post('/mainScreen',function(req,res){
   if(check == 'sign-in'){
     userDB.checkUser(req.body.email, req.body.password, function(userFromDB){
 
-      req.session.loggedInUser = userFromDB[0];
-
-      res.render('mainScreen',{
-        "user_name" : userFromDB[0].email
-      });
+      if (userFromDB[0].email == req.body.email) {
+        req.session.loggedInUser = userFromDB[0];
+        res.render('mainScreen',{
+          "user_name" : userFromDB[0].email
+        });
+      } else {
+        if (userFromDB[0].password == "wrong passwd") {
+          res.redirect("/?msg=check_user_detail");
+        } else {
+          res.redirect("/?msg=not_registered");
+        }
+      }
     })
   }
   
