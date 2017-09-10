@@ -1,5 +1,6 @@
 $(function() {
     var list = new Array();
+    var list1 = new Array();
     $('#sbtree').jstree({
         'core' : {
             'data' : sbtree },
@@ -13,13 +14,13 @@ $(function() {
     }).on("check_node.jstree ", function(e, data) {
         if(list && list.length){   
             // not empty
-            var txt2 = $('<i class="col-md-4 col-sm-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
             $(".sb_box").append(txt2);
             list.push(data.node);     
          } else {
             // empty
             $("#empty").hide();
-            var txt2 = $('<i class="col-md-4 col-sm-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
             $(".sb_box").append(txt2);
             list.push(data.node);     
          }
@@ -51,11 +52,32 @@ $(function() {
         'plugins': ["checkbox"]
     }).on("check_node.jstree ", function(e, data) {
      // alert(data.node.id);
-      var txt2 = $('<i class="col-md-4 col-sm-4 home_text" name= '+ data.node.id +'"></i>').text(data.node.text);
-      $(".home_box").append(txt2); 
+     if(list1 && list1.length){   
+        // not empty
+        var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+        $(".home_box").append(txt2);
+        list1.push(data.node);     
+     } else {
+        // empty
+        $("#empty").hide();
+        var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+        $(".home_box").append(txt2);
+        list1.push(data.node);     
+     }
      }).on("uncheck_node.jstree", function(e, data){
-        var txt = data.node.id;
-          $("i").remove('.'+txt);
+        if(list1 && list1.length){   
+            // not empty
+            var txt = data.node;
+            $("i").remove('.'+txt.id);
+            var index = list.indexOf(txt.id);
+            list1.splice(index, 1);
+         } 
+         if(list1.length == 0) {
+            // empty
+        //    / alert("else");
+        var txt = 'no appliances selected';
+            $("#empty").show();
+            }
       });
       $("#sbDone").click(function() {
         if($('#sbName').val() == ''){
