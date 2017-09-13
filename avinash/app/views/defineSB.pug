@@ -14,20 +14,29 @@ block content
     .container
         .row    
             .col-md-5.col-sm-5
-                .panel.panel-primary.first
+                .panel.panel-primary.boxSize
                     .panel-header
                     .panel-body
                         .tree
                             #sbtree
+            .form(action = '/defineHome' method = 'POST' id = 'sbForm' role = 'form')
+                .col-md-7.col-sm-7.col.xs-7
+                    .panel.panel-primary.boxSize
+                        .panel-body
+                            form.form-horizontal(role='form' action='/defineHome' method='POST' id = 'sbForm')
+                                .form-group
+                                    .pull-right
+                                        input(type='text' placeholder='switch board name' class='sbName' id='sbName' required)
+                                        p#warning
+                                    .pull-right
+                                        p#sbName_text #{index} 
+                                .form-group
+                                    .sb_box#sb_box       
+                                        h1#empty no appliances selected     
+                                        input(type="hidden" name = 'retData' id= 'retData')  
+                                .form-group
+                                    .col-xs-4.col-xs-offset-8.col-sm-offset-8.col-sm-4.col-md-offset-8.col-md-6
+                                        input(class='btn btn-primary' id = "sbDone" value = "Save" type = 'submit' onclick = 'submitform()' )
+
+                                
                             
-            .col-md-7.col-sm-7.col.xs-7
-                .panel.panel-primary.first
-                    .panel-header
-                        .pull-right
-                            input(type='text' placeholder='switch board name' class='add' id='sbName')
-                            p#warning 
-                    .panel-body
-                        .sb_box#sb_box       
-                                p#empty no appliances selected        
-                .col-xs-4.col-xs-offset-6.col-sm-4.col-sm-6.col-md-4.col-md-6
-                    a( class='btn btn-primary' id = "sbDone"  ) Done

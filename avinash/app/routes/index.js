@@ -36,13 +36,11 @@ router.post('/mainScreen',function(req,res){
   var check = req.body.login;
   if(check == 'Register'){
     var newUser = {
-          "first_name" : req.body.first_name,
-          "last_name" : req.body.last_name,
+          "first_name" : req.body.firstName,
+          "last_name" : req.body.lastName,
           "email" : req.body.email,
           "password" : req.body.password
           };
-          
-   // console.log(newUser.first_name + " " + newUser.last_name);
 
     userDB.saveUser(newUser, function(userFromDB) {
         
@@ -76,16 +74,22 @@ router.post('/mainScreen',function(req,res){
 });
 
 router.get('/defineHome',function(req,res){
-  console.log("reached")
-   res.render('defineHome');
+   
+  res.render('defineHome');
 });
 
 router.post('/defineHome',function(req,res){
- // console.log(req.body.);
-});
+  var data = JSON.parse(req.body.retData);//error occuring
+
+    var selAppliances = data.appliances;
+    console.log( "hiiiiiii");
+  res.redirect('defineHome')
+  });
 
 router.get('/defineSB',function(req,res){
-  res.render('defineSB');
+  res.render('defineSB',{
+    'index' : 'expres'
+  });
 });
 
 router.get('/logout',function(req,res){

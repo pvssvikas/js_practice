@@ -1,6 +1,14 @@
 $(function() {
-    var list = new Array();
-    var list1 = new Array();
+    var selAppliances = new Array();
+    var homeSb = new Array();
+    
+    var retData = {};
+
+       
+    retData.appliances = selAppliances;
+    
+
+//switchBoard Appliances tree
     $('#sbtree').jstree({
         'core' : {
             'data' : sbtree },
@@ -12,34 +20,37 @@ $(function() {
         },
         'plugins': ["checkbox"],
     }).on("check_node.jstree ", function(e, data) {
-        if(list && list.length){   
+        if(selAppliances && selAppliances.length){   
             // not empty
-            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.text+'"></i>').text(data.node.text);
             $(".sb_box").append(txt2);
-            list.push(data.node);     
+            selAppliances.push(data.node.text);     
          } else {
             // empty
             $("#empty").hide();
-            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
+            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.text+'"></i>').text(data.node.text);
             $(".sb_box").append(txt2);
-            list.push(data.node);     
+            selAppliances.push(data.node.text);     
          }
       }).on("uncheck_node.jstree", function(e, data){
             //   alert("unchecked");
-        if(list && list.length){   
+        if(selAppliances && selAppliances.length){   
             // not empty
-            var txt = data.node;
-            $("i").remove('.'+txt.id);
-            var index = list.indexOf(txt.id);
-            list.splice(index, 1);
+            var appliance = data.node;
+            $("i").remove('.'+ appliance.text);
+            var index = selAppliances.indexOf(appliance.text);
+            selAppliances.splice(index, 1);
          } 
-         if(list.length == 0) {
+         if(selAppliances.length == 0) {
             // empty
         //    / alert("else");
-        var txt = 'no appliances selected';
+        var text = 'no appliances selected';
             $("#empty").show();
             }
            });
+
+
+// Home tree start
     $('#hometree').jstree({
         'core' : {
             'data' : hometree},
@@ -52,42 +63,43 @@ $(function() {
         'plugins': ["checkbox"]
     }).on("check_node.jstree ", function(e, data) {
      // alert(data.node.id);
-     if(list1 && list1.length){   
+     if(homeSb && homeSb.length){   
         // not empty
         var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
         $(".home_box").append(txt2);
-        list1.push(data.node);     
+        homeSb.push(data.node.text);     
      } else {
         // empty
         $("#empty").hide();
         var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
         $(".home_box").append(txt2);
-        list1.push(data.node);     
+        homeSb.push(data.node.text);     
      }
      }).on("uncheck_node.jstree", function(e, data){
-        if(list1 && list1.length){   
+        if(homeSb && homeSb.length){   
             // not empty
             var txt = data.node;
             $("i").remove('.'+txt.id);
-            var index = list.indexOf(txt.id);
-            list1.splice(index, 1);
+            var index = homeSb.indexOf(txt.id);
+            homeSb.splice(index, 1);
          } 
-         if(list1.length == 0) {
+         if(homeSb.length == 0) {
             // empty
         //    / alert("else");
         var txt = 'no appliances selected';
             $("#empty").show();
             }
       });
+      
       $("#sbDone").click(function() {
-        if($('#sbName').val() == ''){
-            $("#warning").empty().append("cannot be left empty");
-        }
-        if($('#sbName').val() !== ''){
-            window.location = "/defineHome";
-        }
+        var sbName = $('#sbName').val();//get switchbox name
+        retData.sbName = '"'+sbName+'"';//store it in return data
+        var data = JSON.stringify(retData);//stringify the retdata
+        $('#retData').val(data);//attach it to the hidden input
+        $("#sbForm").submit();//submit the form
       });      
 });
+
 
 
  var sbtree = [

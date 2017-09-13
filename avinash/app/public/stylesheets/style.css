@@ -7,49 +7,47 @@ a {
   color: #00B7FF;
 }
 
-.page-header,
 .page-header h1 {
   margin-top:0;
 
 }
 
-.onoffswitch-inner:before {
-    content: "YES";
-    padding-left: 10px;
-    background-color: #2FCCFF; color: #FFFFFF;
-    border-radius: 30px 0 0 30px;
+#sbName{
+  margin-right: 30px;
 }
 
-.onoffswitch-inner:after {
-    content: "NO";
-    padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
-    text-align: right;
-    border-radius: 0 30px 30px 0;
+#sbName_text{
+margin-top: 15px;
 }
-.pull-right p{
-  padding-top: 0;
-  padding-right: 30px;
+
+#warning{
+  padding: 0px;
   word-spacing: 5px;
+  color: red;
+  margin-left: 15px;
+
 }
+
 .glyphicon{
   font-size: 50px;
 }
+
 .glyphicon.glyphicon-cog{
   font-size: 25px;
 }
+
 .ic{
   padding-left: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-first{
+boxSize{
   max-height: 200px;
   max-width: 100px;
 }
 
-.add{
+.sbName{
   margin : 10px;
 }
 
@@ -58,7 +56,7 @@ first{
 }
 
 .home_box{
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 7px;
 }
 
@@ -71,11 +69,17 @@ first{
   -webkit-text-fill-color: indigo;
 }
 
-.sb_box{
-  margin-top: 50px;
-  margin-left: 7px;
+#sb_box{
+  margin-left: 0px;
+  margin-top: 20px;
 }
 
-#warning{
-  color: red;
+#addSwitch{
+  margin-top : 10px;
+  margin-right: 10px;
+}
+
+#empty{
+  margin-top: 50px;
+  margin-left: 50px;
 }
