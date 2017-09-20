@@ -22,13 +22,13 @@ $(function() {
     }).on("check_node.jstree ", function(e, data) {
         if(selAppliances && selAppliances.length){   
             // not empty
-            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.text+'"></i>').text(data.node.text);
+            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
             $(".sb_box").append(txt2);
             selAppliances.push(data.node.text);     
          } else {
             // empty
             $("#empty").hide();
-            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.text+'"></i>').text(data.node.text);
+            var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
             $(".sb_box").append(txt2);
             selAppliances.push(data.node.text);     
          }
@@ -37,8 +37,8 @@ $(function() {
         if(selAppliances && selAppliances.length){   
             // not empty
             var appliance = data.node;
-            $("i").remove('.'+ appliance.text);
-            var index = selAppliances.indexOf(appliance.text);
+            $("i").remove('.'+ appliance.id);
+            var index = selAppliances.indexOf(appliance.id);
             selAppliances.splice(index, 1);
          } 
          if(selAppliances.length == 0) {
@@ -65,27 +65,26 @@ $(function() {
      // alert(data.node.id);
      if(homeSb && homeSb.length){   
         // not empty
-        var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
-        $(".home_box").append(txt2);
-        homeSb.push(data.node.text);     
+        var txt2 = $('<li class= '+data.node.id+'><a href = "#">'+data.node.text+'</a></li>' );
+        $("#navBox").append(txt2);
+        homeSb.push(data.node.id);     
      } else {
         // empty
         $("#empty").hide();
-        var txt2 = $('<i class="col-md-4 col-sm-4 col-xs-4 home_text '+ data.node.id+'"></i>').text(data.node.text);
-        $(".home_box").append(txt2);
-        homeSb.push(data.node.text);     
+        var txt2 = $('<li class= '+data.node.id+'><a href = "#">'+data.node.text+'</a></li>' );
+        $("#navBox").append(txt2);
+        homeSb.push(data.node.id);     
      }
      }).on("uncheck_node.jstree", function(e, data){
         if(homeSb && homeSb.length){   
             // not empty
-            var txt = data.node;
-            $("i").remove('.'+txt.id);
-            var index = homeSb.indexOf(txt.id);
+            var txt = data.node.id;
+            $("li").remove('.'+txt);
+            var index = homeSb.indexOf(txt);
             homeSb.splice(index, 1);
          } 
          if(homeSb.length == 0) {
             // empty
-        //    / alert("else");
         var txt = 'no appliances selected';
             $("#empty").show();
             }
@@ -98,6 +97,8 @@ $(function() {
         $('#retData').val(data);//attach it to the hidden input
         $("#sbForm").submit();//submit the form
       });      
+
+      
 });
 
 

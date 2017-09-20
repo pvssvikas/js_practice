@@ -11,6 +11,13 @@ block content
                     .pull-left
                         h1 Home
     .container
+        .row
+            .pull-left
+                ol.breadcrumb#navigator
+                    li
+                        a(href= '/mainScreen') Home
+                    li 
+                        a(href = '/defineHome') Configure Home
         .row    
             .col-md-5.col-sm-5
                 .panel.panel-primary.boxSize
@@ -25,10 +32,10 @@ block content
                                     .pull-right
                                         a(href='/defineSB' class='add btn btn-primary' id = 'addSwitch') add Switch Board
                                 .form-group
-                                    .home_box#home_box       
-                                        h1#empty no appliances selected  
-                                        p #{sbName}
-                                        p #{appliances}     
+                                    .home_box#home_box   
+                                        ul.nav.nav-tabs#navBox     
+                                        h1#empty No Rooms selected  
+                                        input(type = 'hidden' name = 'roomNAme' id = 'roomName')
                                 .form-group
                                     .col-xs-4.col-xs-offset-8.col-sm-offset-8.col-sm-4.col-md-offset-8.col-md-6
                                         input(class='btn btn-primary' id = "homeDone" value = "Save" type = 'submit' onclick = 'submitform()' )

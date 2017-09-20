@@ -83,3 +83,16 @@ boxSize{
   margin-top: 50px;
   margin-left: 50px;
 }
+
+.active
+{
+  background: brown
+}
+
+#mainRight{
+  margin-right: 20px;
+}
+ 
+#searchBox{
+  margin-left: 10px;
+}

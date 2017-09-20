@@ -79,10 +79,9 @@ router.get('/defineHome',function(req,res){
 });
 
 router.post('/defineHome',function(req,res){
-  var data = JSON.parse(req.body.retData);//error occuring
+  //var data = JSON.parse(req.body.retData);//error occuring
 
-    var selAppliances = data.appliances;
-    console.log( "hiiiiiii");
+  //  var selAppliances = data.appliances;
   res.redirect('defineHome')
   });
 

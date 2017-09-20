@@ -10,14 +10,15 @@ block content
                             img(src='/images/product-home.png' style='height:30px') 
                     .pull-left
                         h1 Home
-                    .pull-right
-                        p #{user_name} 
-                            a(href='/logout') Signout 
-                        p#se  Search
-                            input(type='text')
-                            input(type='submit' value='search')
-                            a(href="/defineHome" class='ic')
-                                span(class="glyphicon glyphicon-cog")
+                    .div#mainRight
+                        .pull-right
+                            p #{user_name} 
+                                a(href='/logout') Signout 
+                            p#se  Search
+                                input(type='text' id='searchBox')
+                                input(type='submit' value='search')
+                                a(href="/defineHome" class='ic')
+                                    span(class="glyphicon glyphicon-cog")
     .container
         .row
             .col-md-12.col-sm-12
