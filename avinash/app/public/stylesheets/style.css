@@ -96,3 +96,7 @@ boxSize{
 #searchBox{
   margin-left: 10px;
 }
+
+.active{
+  background: green;
+}

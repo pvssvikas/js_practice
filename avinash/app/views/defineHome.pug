@@ -27,15 +27,22 @@ block content
             .col-md-7.col-sm-7.col-xs-7
                 .panel.panel-primary.boxSize
                      .panel-body
-                            form.form-horizontal(role='form' action='/defineHome' method='get' id = 'homeForm')
+                            form.form-horizontal(role='form' action='/mainScreen' method='get' id = 'homeForm')
                                 .form-group
-                                    .pull-right
-                                        a(href='/defineSB' class='add btn btn-primary' id = 'addSwitch') add Switch Board
+                                    .col-xs-4.col-xs-offset-8.col-sm-offset-7.col-sm-4.col-md-offset-9.col-md-6
+                                        input(class='btn btn-primary' id = "configSb" value = "add switch board" type = 'submit' onclick = 'navigateform()' )
                                 .form-group
-                                    .home_box#home_box   
-                                        ul.nav.nav-tabs#navBox     
+                                    .navBox#navBox   
+                                        ul.nav.nav-pills#ulList
+                                            li.nav-item
+                                                a.nav-link.active(href='#!') Active
+                                            li.nav-item
+                                                a.nav-link(href='#!') Link
+                                            li.nav-item
+                                                a.nav-link.disabled(href='#!') Disabled
+  
                                         h1#empty No Rooms selected  
-                                        input(type = 'hidden' name = 'roomNAme' id = 'roomName')
+                                    
                                 .form-group
-                                    .col-xs-4.col-xs-offset-8.col-sm-offset-8.col-sm-4.col-md-offset-8.col-md-6
+                                    .col-xs-4.col-xs-offset-8.col-sm-offset-9.col-sm-4.col-md-offset-8.col-md-6
                                         input(class='btn btn-primary' id = "homeDone" value = "Save" type = 'submit' onclick = 'submitform()' )

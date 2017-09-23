@@ -65,14 +65,14 @@ $(function() {
      // alert(data.node.id);
      if(homeSb && homeSb.length){   
         // not empty
-        var txt2 = $('<li class= '+data.node.id+'><a href = "#">'+data.node.text+'</a></li>' );
-        $("#navBox").append(txt2);
+        var txt2 = $('<li class="nav-item '+data.node.id+'"><a class="nav-link " href="#!">'+data.node.text+'</a></li>' );
+        $("#ulList").append(txt2);
         homeSb.push(data.node.id);     
      } else {
         // empty
         $("#empty").hide();
-        var txt2 = $('<li class= '+data.node.id+'><a href = "#">'+data.node.text+'</a></li>' );
-        $("#navBox").append(txt2);
+        var txt2 = $('<li class="nav-item '+data.node.id+'"><a class="nav-link " href="#!">'+data.node.text+'</a></li>' );
+        $("#ulList").append(txt2);
         homeSb.push(data.node.id);     
      }
      }).on("uncheck_node.jstree", function(e, data){
@@ -92,11 +92,19 @@ $(function() {
       
       $("#sbDone").click(function() {
         var sbName = $('#sbName').val();//get switchbox name
-        retData.sbName = '"'+sbName+'"';//store it in return data
+        retData.sbName = sbName;//store it in return data
         var data = JSON.stringify(retData);//stringify the retdata
+        alert(data);
         $('#retData').val(data);//attach it to the hidden input
         $("#sbForm").submit();//submit the form
-      });      
+      });   
+      
+      $("li a").on("click", function (e) {
+
+        //alert('ul.class');
+        $("li").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
 
       
 });

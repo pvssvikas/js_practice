@@ -74,14 +74,13 @@ router.post('/mainScreen',function(req,res){
 });
 
 router.get('/defineHome',function(req,res){
-   
   res.render('defineHome');
 });
 
 router.post('/defineHome',function(req,res){
-  //var data = JSON.parse(req.body.retData);//error occuring
-
-  //  var selAppliances = data.appliances;
+  var data = JSON.parse(req.body.retData);//error occuring
+  var sbName = data.sbName;
+  var appliances = data.appliances;
   res.redirect('defineHome')
   });
 
