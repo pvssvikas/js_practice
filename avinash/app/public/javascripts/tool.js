@@ -38,8 +38,9 @@ $(function() {
             // not empty
             var appliance = data.node;
             $("i").remove('.'+ appliance.id);
-            var index = selAppliances.indexOf(appliance.id);
-            selAppliances.splice(index, 1);
+            var index = selAppliances.indexOf(appliance.text);
+            if(index > -1)
+                selAppliances.splice(index, 1);
          } 
          if(selAppliances.length == 0) {
             // empty
