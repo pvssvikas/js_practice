@@ -1,9 +1,11 @@
+
+
 $(function() {
     var selAppliances = new Array();
     var homeSb = new Array();
     
     var retData = {};
-
+    var tempCounter = 0;
        
     retData.appliances = selAppliances;
     
@@ -12,7 +14,7 @@ $(function() {
     $('#sbtree').jstree({
         'core' : {
             'data' : sbtree },
-        'checkbox': {
+        'checkbox': {   
             three_state: false,
             cascade: 'up',
             wholenode : false,
@@ -65,24 +67,26 @@ $(function() {
     }).on("check_node.jstree ", function(e, data) {
      // alert(data.node.id);
      if(homeSb && homeSb.length){   
-        // not empty
-        var txt2 = $('<li class="nav-item '+data.node.id+'"><a class="nav-link " href="#!">'+data.node.text+'</a></li>' );
-        $("#ulList").append(txt2);
-        homeSb.push(data.node.id);     
+        // not empty i.e, from second check box
+        tempCounter++;
+        $("#roomsConfig").append( $(roomTabPill({tabName:"hello" + tempCounter},{roomName:data.node.text}) ));
+        homeSb.push(data.node.text);
+
      } else {
-        // empty
+        // empty i.e, executes if checking first checkbox
         $("#empty").hide();
-        var txt2 = $('<li class="nav-item '+data.node.id+'"><a class="nav-link " href="#!">'+data.node.text+'</a></li>' );
-        $("#ulList").append(txt2);
-        homeSb.push(data.node.id);     
+        tempCounter++;
+        $("#roomsConfig").append( $(roomTabPill({tabName:"hello" + tempCounter},{roomName:data.node.text}) ));
+        homeSb.push(data.node.text);     
      }
      }).on("uncheck_node.jstree", function(e, data){
         if(homeSb && homeSb.length){   
             // not empty
             var txt = data.node.id;
-            $("li").remove('.'+txt);
-            var index = homeSb.indexOf(txt);
-            homeSb.splice(index, 1);
+            $("#roomsConfig a").remove('.'+txt);
+            var index = homeSb.indexOf(data.node.text);
+            if(index > -1)
+                homeSb.splice(index, 1);
          } 
          if(homeSb.length == 0) {
             // empty
@@ -99,19 +103,20 @@ $(function() {
         $('#retData').val(data);//attach it to the hidden input
         $("#sbForm").submit();//submit the form
       });   
-      
-      $("li a").on("click", function (e) {
 
-        //alert('ul.class');
-        $("li").find(".active").removeClass("active");
-        $(this).addClass("active");
-    });
+      $("#homeDone").click(function() {
+        alert(homeSb);
+      });   
+      
+      $("#navBox li a").on("click", function (e) {
+
+      });
 
       
 });
 
 
-
+// switch board tree definition in "defineSb" page
  var sbtree = [
     {   "text" : "Switch Board Definitions",
         "state": { "opened": true, "disabled" : true  },
@@ -145,6 +150,7 @@ $(function() {
     ]},
 ]
 
+//home tree structure in "defineHome" page
 var hometree = [
     {   "text" : "Home",
         "state": { "opened": true, "disabled" : true  },

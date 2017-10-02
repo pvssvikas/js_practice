@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
+var browserify = require('browserify-middleware');
+var envify = require('envify');
 
 require('../models/init')();
 
@@ -8,6 +10,14 @@ var userDB = require('../models/user');
 
 
 /* GET home page. */
+router.get('/js/pug.js', browserify(['pug'], {
+  precompile: true,
+  transform: [
+    envify
+  ],
+  ignore: ['http', 'https', 'resolve']
+}));
+
 router.get('/', function(req, res, next) {
   if (req.session.loggedInUser) {
     res.redirect("/mainScreen");
@@ -78,7 +88,7 @@ router.get('/defineHome',function(req,res){
 });
 
 router.post('/defineHome',function(req,res){
-  var data = JSON.parse(req.body.retData);//error occuring
+  var data = JSON.parse(req.body.retData);
   var sbName = data.sbName;
   var appliances = data.appliances;
   res.redirect('defineHome')
