@@ -69,21 +69,22 @@ $(function() {
      if(homeSb && homeSb.length){   
         // not empty i.e, from second check box
         tempCounter++;
-        $("#roomsConfig").append( $(roomTabPill({tabName:"hello" + tempCounter},{roomName:data.node.text}) ));
+        $("#roomsConfigMenu").append( $(roomTabPill({roomId:data.node.id,roomName:data.node.text,tabName:"hello" + tempCounter}) ));
+        $("#roomsConfig").append( $(roomTabContent({roomName:data.node.text,roomId:data.node.id,title:"+"}) ));
         homeSb.push(data.node.text);
 
      } else {
         // empty i.e, executes if checking first checkbox
         $("#empty").hide();
         tempCounter++;
-        $("#roomsConfig").append( $(roomTabPill({tabName:"hello" + tempCounter},{roomName:data.node.text}) ));
+        $("#roomsConfigMenu").append( $(roomTabPill({roomId:data.node.id,roomName:data.node.text,tabName:"hello" + tempCounter}) ));
         homeSb.push(data.node.text);     
      }
      }).on("uncheck_node.jstree", function(e, data){
         if(homeSb && homeSb.length){   
             // not empty
             var txt = data.node.id;
-            $("#roomsConfig a").remove('.'+txt);
+            $("#roomsConfigMenu a").remove('.'+txt);
             var index = homeSb.indexOf(data.node.text);
             if(index > -1)
                 homeSb.splice(index, 1);
@@ -108,8 +109,8 @@ $(function() {
         alert(homeSb);
       });   
       
-      $("#navBox li a").on("click", function (e) {
-
+      $("button p").on("click", function (e) {
+            $(this).addClass("active in");
       });
 
       
