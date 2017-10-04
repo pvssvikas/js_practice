@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha"
+    "test": "mocha",
+
+    "pug" : "npm run pug-roomTabPill & npm run pug-roomTabContent",
+    "pug-roomTabContent": "pug -c -n roomTabContent views/room-tabContentTemplate.pug -o public/javascripts/",
+    "pug-roomTabPill"   : "pug -c -n roomTabPill views/room-tabPillTemplate.pug -o public/javascripts/"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
