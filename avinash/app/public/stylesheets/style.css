@@ -96,8 +96,6 @@ boxSize{
   width : 100px;
   height : 100px;
   margin-top: 10px;
-}
-
-.addButtonFont{
   font-size: 50px;
+  margin-left: 10px;
 }

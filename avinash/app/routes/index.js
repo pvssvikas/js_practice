@@ -85,8 +85,10 @@ router.post('/defineHome',function(req,res){
   });
 
 router.get('/defineSB',function(req,res){
+  var roomName = req.body.roomName;
+  console.log("no value");
   res.render('defineSB',{
-    'index' : 'expres'
+    'roomName'  : roomName
   });
 });
 

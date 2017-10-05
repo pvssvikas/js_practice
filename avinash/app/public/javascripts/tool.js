@@ -70,7 +70,7 @@ $(function() {
         // not empty i.e, from second check box
         tempCounter++;
         $("#roomsConfigMenu").append( $(roomTabPill({roomId:data.node.id,roomName:data.node.text,tabName:"hello" + tempCounter}) ));
-        $("#roomsConfig").append( $(roomTabContent({roomName:data.node.text,roomId:data.node.id,title:"+"}) ));
+        $("#roomsConfig").append( $(roomTabContent({roomId:data.node.id,roomName:data.node.text,title:"+"}) ));
         homeSb.push(data.node.text);
 
      } else {
@@ -78,6 +78,8 @@ $(function() {
         $("#empty").hide();
         tempCounter++;
         $("#roomsConfigMenu").append( $(roomTabPill({roomId:data.node.id,roomName:data.node.text,tabName:"hello" + tempCounter}) ));
+        $("#roomsConfig").append( $(roomTabContent({roomName:data.node.text,roomId:data.node.id,title:"+"}) ));
+        
         homeSb.push(data.node.text);     
      }
      }).on("uncheck_node.jstree", function(e, data){
@@ -173,9 +175,9 @@ var hometree = [
                     {   "text" : "Rooms",
                         "state": { "opened": true, "disabled" : true  },
                         "a_attr": {"class":"no_checkbox"}, "children" : [
-                        {   "text" : "Rooms 1"   },
-                        {   "text" : "Rooms 2"  },
-                        {   "text" : "Rooms 3"  }
+                        {   "text" : "Rooms_1"   },
+                        {   "text" : "Rooms_2"  },
+                        {   "text" : "Rooms_3"  }
                     ]},
             ]},
     ]},

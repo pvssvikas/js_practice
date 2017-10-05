@@ -1,5 +1,4 @@
 div(id = roomName class = "tab-pane fade") 
     .col-md-2.col-sm-4.col-xs-4
-        button(type='submit' class = "btn btn-outline-secondary addButton") 
-            p.addButtonFont #{title}
-    
+        a.addButtonFont.addButton(href = '/defineSB' name = 'roomName' value = '#{roomName}') #{title}
+        

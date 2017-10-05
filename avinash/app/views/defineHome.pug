@@ -30,31 +30,9 @@ block content
                             form.form-horizontal(role='form' action='/mainScreen' method='get' id = 'homeForm')
                                 .form-group
                                     ul#roomsConfigMenu.nav.nav-pills
-                                        li
-                                            a(data-toggle="pill", href="#t1") t1
-                                        li
-                                            a(data-toggle="pill", href="#t2") t2
-                                        li
-                                            a(data-toggle="pill", href="#t3") t3
+                                     
                                     div.tab-content#roomsConfig
-                                        #t1.tab-pane.fade 
-                                            .col-md-2.col-sm-4.col-xs-4
-                                                button(type='submit' class = "btn btn-outline-secondary addButton") 
-                                                    p.addButtonFont +
-                                            .col-md-2.col-sm-4.col-xs-4
-                                                button(type='submit' class = "btn btn-outline-secondary addButton") 
-                                                    p.addButtonFont -
-                                            .col-md-2.col-sm-4.col-xs-4
-                                                button(type='submit' class = "btn btn-outline-secondary addButton") 
-                                                    p.addButtonFont 4
-                                        #t2.tab-pane.fade 
-                                            .col-md-2.col-sm-2.col-xs-2
-                                                button(type='submit' class = "btn btn-outline-secondary addButton") 
-                                                    p.addButtonFont +
-                                        #t3.tab-pane.fade 
-                                            col-md-2.col-sm-2.col-xs-2
-                                                button(type='submit' class = "btn btn-outline-secondary addButton") 
-                                                    p.addButtonFont +
+                                       
                                 .form-group
                                     .col-xs-4.col-xs-offset-8.col-sm-offset-9.col-sm-4.col-md-offset-8.col-md-6
                                         input(class='btn btn-primary' id = "homeDone" value = "Save" type = 'submit'  )
