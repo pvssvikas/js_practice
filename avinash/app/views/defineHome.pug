@@ -26,15 +26,16 @@ block content
                         #hometree
             .col-md-7.col-sm-7.col-xs-12
                 .panel.panel-primary.boxSize
-                     .panel-body
-                            form.form-horizontal(role='form' action='/mainScreen' method='get' id = 'homeForm')
+                    .panel-body
+                            form.form-horizontal(role='form' action='/defineSB' method='POST' id = 'homeForm')
                                 .form-group
+                                    
                                     ul#roomsConfigMenu.nav.nav-pills
                                      
                                     div.tab-content#roomsConfig
-                                       
-                                .form-group
-                                    .col-xs-4.col-xs-offset-8.col-sm-offset-9.col-sm-4.col-md-offset-8.col-md-6
-                                        input(class='btn btn-primary' id = "homeDone" value = "Save" type = 'submit'  )
-    script(src='/javascripts/room-tabPillTemplate.js')
-    script(src='/javascripts/room-tabContentTemplate.js')
+                                        input(type="hidden" name ="tagName" id="tagName")
+                                    
+                            .col-xs-4.col-xs-offset-8.col-sm-offset-9.col-sm-4.col-md-offset-8.col-md-6
+                                a(href= '/mainScreen' class = 'btn btn-primary' ) Save
+                                
+    

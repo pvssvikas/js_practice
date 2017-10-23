@@ -92,10 +92,12 @@ boxSize{
   margin-left: 10px;
 }
 
-.addButton{
-  width : 100px;
-  height : 100px;
+.buttonSize{
   margin-top: 10px;
-  font-size: 50px;
-  margin-left: 10px;
+  height: 70px;
+  width: 70px;
+}
+
+.textSize{
+  font-size: 30px;
 }

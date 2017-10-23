@@ -69,8 +69,6 @@ router.post('/mainScreen',function(req,res){
       }
     })
   }
-  
-  
 });
 
 router.get('/defineHome',function(req,res){
@@ -78,18 +76,23 @@ router.get('/defineHome',function(req,res){
 });
 
 router.post('/defineHome',function(req,res){
-  var data = JSON.parse(req.body.retData);
+   var data = JSON.parse(req.body.retData);
   var sbName = data.sbName;
   var appliances = data.appliances;
   res.redirect('defineHome')
   });
 
 router.get('/defineSB',function(req,res){
-  var roomName = req.body.roomName;
-  console.log("no value");
-  res.render('defineSB',{
-    'roomName'  : roomName
-  });
+  res.render('defineSB');
+});
+
+router.post('/defineSB',function(req,res){
+  console.log("reached");
+  console.log(req.body.fwdData + "    hiiiiii");
+  var data = JSON.parse(req.body.fwdData);
+  var values = data.values;
+  console.log(text);
+  res.redirect('defineHome');
 });
 
 router.get('/logout',function(req,res){

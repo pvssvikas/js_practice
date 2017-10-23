@@ -1,8 +1,11 @@
 
 
 $(function() {
+
+    
     var selAppliances = new Array();
     var homeSb = new Array();
+    
     
     var retData = {};
     var tempCounter = 0;
@@ -75,7 +78,7 @@ $(function() {
 
      } else {
         // empty i.e, executes if checking first checkbox
-        $("#empty").hide();
+       
         tempCounter++;
         $("#roomsConfigMenu").append( $(roomTabPill({roomId:data.node.id,roomName:data.node.text,tabName:"hello" + tempCounter}) ));
         $("#roomsConfig").append( $(roomTabContent({roomName:data.node.text,roomId:data.node.id,title:"+"}) ));
@@ -106,17 +109,20 @@ $(function() {
         $('#retData').val(data);//attach it to the hidden input
         $("#sbForm").submit();//submit the form
       });   
-
-      $("#homeDone").click(function() {
-        alert(homeSb);
-      });   
-      
-      $("button p").on("click", function (e) {
-            $(this).addClass("active in");
-      });
-
-      
+     
 });
+
+function myFunction(val){
+    var fwdData = {};
+    var values = val;
+    alert(values);
+    fwdData.values = values;
+    var data = JSON.stringify(fwdData);
+    alert(data);
+    $("#tagName").val(data);
+    alert("done");
+    $(this).submit();
+}
 
 
 // switch board tree definition in "defineSb" page
