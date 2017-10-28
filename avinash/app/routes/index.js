@@ -88,10 +88,9 @@ router.get('/defineSB',function(req,res){
 
 router.post('/defineSB',function(req,res){
   console.log("reached");
-  console.log(req.body.fwdData + "    hiiiiii");
-  var data = JSON.parse(req.body.fwdData);
+  console.log(req.body.tagName + "    hiiiiii");
+  var data = JSON.parse(req.body.tagName);
   var values = data.values;
-  console.log(text);
   res.redirect('defineHome');
 });
 
