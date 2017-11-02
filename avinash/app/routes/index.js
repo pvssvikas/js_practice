@@ -5,6 +5,7 @@ var session = require('express-session');
 require('../models/init')();
 
 var userDB = require('../models/user');
+var sbDB = require('../models/switchBoard');
 
 
 /* GET home page. */
@@ -72,26 +73,45 @@ router.post('/mainScreen',function(req,res){
 });
 
 router.get('/defineHome',function(req,res){
-  res.render('defineHome');
+  if (req.session.loggedInUser) {
+    sbDB.getAllSwitchBoards(function(switchBoards){
+      res.render('defineHome', {"results": switchBoards});
+});
+} else {
+  res.redirect("/");
+}
 });
 
 router.post('/defineHome',function(req,res){
-   var data = JSON.parse(req.body.retData);
-  var sbName = data.sbName;
-  var appliances = data.appliances;
-  res.redirect('defineHome')
+  var data = JSON.parse(req.body.retData);
+  var sbName = data.sbName;//switchboard complete name
+  var roomName = data.roomName;// to identify which room it belongs ex: south,north etc;
+  var appliances = data.appliances;//list of appliances selected
+  var newSB = {
+      "name " : sbName,
+      "appliances" : appliances
+    }
+  sbDB.saveSwitchBoard(newSB,function(sbFromDB){  //tryig to save the switch board to database
+    res.redirect("/defineHome");
+   });
+  
   });
 
 router.get('/defineSB',function(req,res){
-  res.render('defineSB');
+  if (req.session.loggedInUser) {
+    res.render('defineSB');
+
+} else {
+  res.redirect("/");
+}
 });
 
 router.post('/defineSB',function(req,res){
-  console.log("reached");
-  console.log(req.body.tagName + "    hiiiiii");
   var data = JSON.parse(req.body.tagName);
   var values = data.values;
-  res.redirect('defineHome');
+  res.render('defineSB',{
+    "roomName" : data.values
+  });
 });
 
 router.get('/logout',function(req,res){

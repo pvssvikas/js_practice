@@ -9,7 +9,7 @@
 6 silly lifecycle app@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle app@0.0.0~start: app@0.0.0
 8 verbose lifecycle app@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle app@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\jitu\js_practice\avinash\app\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\jitu\AppData\Local\Microsoft\WindowsApps;C:\Users\jitu\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\mongoDb\bin;C:\Program Files\Java\jdk-9\bin;C:\Program Files\Java\jre-9\bin;
+9 verbose lifecycle app@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\jitu\js_practice\avinash\app\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\jitu\AppData\Local\Microsoft\WindowsApps;C:\Users\jitu\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\mongoDb\bin;C:\Program Files\Java\jdk-9\bin;C:\Program Files\Java\jre-9\bin;C:\Users\jitu\AppData\Local\atom\bin
 10 verbose lifecycle app@0.0.0~start: CWD: C:\Users\jitu\js_practice\avinash\app
 11 silly lifecycle app@0.0.0~start: Args: [ '/d /s /c', 'node ./bin/www' ]
 12 verbose stack Error: kill ENOSYS

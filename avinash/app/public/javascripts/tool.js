@@ -16,14 +16,16 @@ $(function() {
 //switchBoard Appliances tree
     $('#sbtree').jstree({
         'core' : {
-            'data' : sbtree },
+            'data' : sbtree ,
+            'check_callback' : true
+        },
         'checkbox': {   
             three_state: false,
             cascade: 'up',
             wholenode : false,
             tie_selection : false
         },
-        'plugins': ["checkbox"],
+        'plugins': ["checkbox" , "contextmenu"],
     }).on("check_node.jstree ", function(e, data) {
         if(selAppliances && selAppliances.length){   
             // not empty
@@ -59,14 +61,43 @@ $(function() {
 // Home tree start
     $('#hometree').jstree({
         'core' : {
-            'data' : hometree},
+            'data' : hometree,
+            'check_callback' : true
+            },
         'checkbox': {
             three_state: false,
             cascade: 'up',
             wholenode : false,
             tie_selection : false
-        },
-        'plugins': ["checkbox"]
+            },
+        'plugins': ["checkbox" , "contextmenu" , "sort" , "unique" , "wholerow"],
+        "contextmenu" : {
+            "items" : function($node) {
+                return { 
+                    "create" : {
+                        "separator_before"	: false,
+                        "separator_after"	: true,
+                        "label" : "create a new room ",
+                        "action" : function(data) {
+                            var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                            if(obj.children == 0){
+						        inst.create_node(obj, {}, "last", function (new_node) {
+							        try {
+								        inst.edit(new_node);
+							        } catch (ex) {
+								        setTimeout(function () { inst.edit(new_node); },0);
+							        }
+						        });
+                               }
+                            else {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }).on("check_node.jstree ", function(e, data) {
      // alert(data.node.id);
      if(homeSb && homeSb.length){   
@@ -103,7 +134,9 @@ $(function() {
       
       $("#sbDone").click(function() {
         var sbName = $('#sbName').val();//get switchbox name
-        retData.sbName = sbName;//store it in return data
+        var roomName = $('#sbNameText').text();//get room name
+        retData.sbName = roomName+sbName;//add both room name and switchboard name i.e north sb 1 etc.
+        retData.roomName = roomName;
         var data = JSON.stringify(retData);//stringify the retdata
         alert(data);
         $('#retData').val(data);//attach it to the hidden input
@@ -115,12 +148,9 @@ $(function() {
 function myFunction(val){
     var fwdData = {};
     var values = val;
-    alert(values);
     fwdData.values = values;
     var data = JSON.stringify(fwdData);
-    alert(data);
     $("#tagName").val(data);
-    alert("done");
     $(this).submit();
 }
 
@@ -162,29 +192,45 @@ function myFunction(val){
 //home tree structure in "defineHome" page
 var hometree = [
     {   "text" : "Home",
-        "state": { "opened": true, "disabled" : true  },
-        "a_attr": {"class":"no_checkbox"}, "children" : [
-            {   "text" : "Floors",
-                "state": { "opened": true, "disabled" : true  },
-                "a_attr": {"class":"no_checkbox"},},       
-            {   "text" : "Ground Floor",
-                "state": { "opened": true, "disabled" : true  },
-                "a_attr": {"class":"no_checkbox"}, "children" : [
-                    {   "text" : "Corridors",
-                        "state": { "opened": true, "disabled" : true  },
-                        "a_attr": {"class":"no_checkbox"}, "children" :[
-                        {   "text"  :   "North" },
-                        {   "text"  :   "East"  },
-                        {   "text"  :   "West"  },
-                        {   "text"  :   "South" }
-                    ]},
-                    {   "text" : "Rooms",
-                        "state": { "opened": true, "disabled" : true  },
-                        "a_attr": {"class":"no_checkbox"}, "children" : [
-                        {   "text" : "Rooms_1"   },
-                        {   "text" : "Rooms_2"  },
-                        {   "text" : "Rooms_3"  }
-                    ]},
-            ]},
-    ]},
+        "state": { 
+            "opened": true
+          },
+        "children" : [
+                {   "text" : "Floors",
+                    "state": { 
+                        "opened": true
+                      },
+                    "children": [
+                        {   "text" : "Ground Floor",
+                        "state": { 
+                            "opened": true
+                          }, 
+                        "children" : [
+                            {   "text" : "Corridors",
+                                "state": { 
+                                    "opened": true
+                                  },
+                                "children" :[
+                                    {   "text"  :   "North" },
+                                    {   "text"  :   "East"  },
+                                    {   "text"  :   "West"  },
+                                    {   "text"  :   "South" }
+                                ]
+                            },
+                        {   "text" : "Rooms",
+                            "state": { 
+                                "opened": true
+                              },
+                            "children" : [
+                                {   "text" : "Room_1"   },
+                                {   "text" : "Room_2"  },
+                                {   "text" : "Room_3"  }
+                                ]
+                            },
+                        ]
+                    },
+                ]       
+            }
+        ]
+    },
 ]
