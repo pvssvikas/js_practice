@@ -92,6 +92,8 @@ router.post('/defineHome',function(req,res){
       "appliances" : appliances
     }
   sbDB.saveSwitchBoard(newSB,function(sbFromDB){  //tryig to save the switch board to database
+    // error occuring
+    
     res.redirect("/defineHome");
    });
   
